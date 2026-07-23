@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Catálogo Maestro - Fox Phone</title>
+    <style>
+        :root {
+            --bg-color: #0f172a;
+            --card-bg: #1e293b;
+            --text-color: #f8fafc;
+            --text-muted: #94a3b8;
+            --primary: #38bdf8;
+            --primary-hover: #0284c7;
+            --accent: #22c55e;
+            --border: #334155;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            padding: 20px;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 30px;
+            padding: 20px;
+            background: linear-gradient(135deg, #1e293b, #0f172a);
+            border-bottom: 2px solid var(--primary);
+            border-radius: 12px;
+        }
+
+        header h1 {
+            font-size: 2.2rem;
+            color: var(--primary);
+            margin-bottom: 8px;
+        }
+
+        header p {
+            color: var(--text-muted);
+        }
+
+        .controls {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 25px;
+            max-width: 1200px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .search-box input {
+            padding: 12px 18px;
+            width: 300px;
+            border-radius: 8px;
+            border: 1px solid var(--border);
+            background-color: var(--card-bg);
+            color: var(--text-color);
+            font-size: 0.95rem;
+            outline: none;
+        }
+
+        .search-box input:focus {
+            border-color: var(--primary);
+        }
+
+        .category-filters {
+            display: flex;
+            gap: 10px;
+            overflow-x: auto;
+            padding-bottom: 5px;
+        }
+
+        .filter-btn {
+            padding: 8px 16px;
+            border-radius: 20px;
+            border: 1px solid var(--border);
+            background-color: var(--card-bg);
+            color: var(--text-muted);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            white-space: nowrap;
+        }
+
+        .filter-btn.active, .filter-btn:hover {
+            background-color: var(--primary);
+            color: #000;
+            border-color: var(--primary);
+            font-weight: bold;
+        }
+
+        .catalog-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .product-card {
+            background-color: var(--card-bg);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .product-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.4);
+            border-color: var(--primary);
+        }
+
+        .img-container {
+            width: 100%;
+            height: 200px;
+            background-color: #0f172a;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .img-placeholder {
+            color: var(--text-muted);
+            font-size: 0.85rem;
+            text-align: center;
+            padding: 10px;
+        }
+
+        .product-info {
+            padding: 15px;
+            display: flex;
+            flex-direction: column;
+            flex-grow: 1;
+        }
+
+        .product-tag {
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--primary);
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+
+        .product-title {
+            font-size: 1.1rem;
+            margin-bottom: 10px;
+            font-weight: 600;
+        }
+
+        .product-specs {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            margin-bottom: 15px;
+            flex-grow: 1;
+        }
+
+        .product-specs li {
+            list-style: none;
+            margin-bottom: 3px;
+        }
+
+        .price-table {
+            background-color: #0f172a;
+            border-radius: 8px;
+            padding: 10px;
+            margin-top: auto;
+        }
+
+        .price-row {
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.85rem;
+            margin-bottom: 4px;
+        }
+
+        .price-row:last-child {
+            margin-bottom: 0;
+            padding-top: 4px;
+            border-top: 1px dashed var(--border);
+        }
+
+        .price-label {
+            color: var(--text-muted);
+        }
+
+        .price-val {
+            font-weight: bold;
+            color: var(--accent);
+        }
+
+        footer {
+            text-align: center;
+            margin-top: 50px;
+            padding: 20px;
+            color: var(--text-muted);
+            border-top: 1px solid var(--border);
+        }
+
+        .contact-btn {
+            display: inline-block;
+            background-color: var(--accent);
+            color: #000;
+            padding: 10px 20px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: bold;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>CATÁLOGO DE PRODUCTOS - FOX PHONE</h1>
+        <p>Precios al por mayor, caja y unidad | Envíos a todo el Perú</p>
+    </header>
+
+    <div class="controls">
+        <div class="search-box">
+            <input type="text" id="searchInput" placeholder="Buscar producto..." onkeyup="filterProducts()">
+        </div>
+        <div class="category-filters">
+            <button class="filter-btn active" onclick="filterCategory('all')">Todos</button>
+            <button class="filter-btn" onclick="filterCategory('combos')">Combos</button>
+            <button class="filter-btn" onclick="filterCategory('cargadores')">Cargadores y Cables</button>
+            <button class="filter-btn" onclick="filterCategory('audifonos')">Audífonos / AirPods</button>
+            <button class="filter-btn" onclick="filterCategory('parlantes')">Parlantes</button>
+            <button class="filter-btn" onclick="filterCategory('smartwatch')">Smartwatches</button>
+            <button class="filter-btn" onclick="filterCategory('novedades')">Novedades</button>
+        </div>
+    </div>
+
+    <main class="catalog-grid" id="catalogGrid">
+        <!-- Generado dinámicamente vía JavaScript -->
+    </main>
+
+    <footer>
+        <p>Contacto de Pedidos: +51 937 302 569</p>
+        <a href="https://wa.me/51937302569" class="contact-btn" target="_blank">Contactar por WhatsApp</a>
+    </footer>
+
+    <script>
+        const products = [
+            // COMBOS Y PROMOS
+            { id: 1, category: 'combos', title: 'Combo AirPods Max 4ta Gen', specs: ['Control de música', 'Bluetooth 5.1', 'Reducción de ruido'], box: 'S/150 (Combo 4 UN)', wholesale: '-', unit: '-', img: 'airpods_max_combo.jpg' },
+            { id: 2, category: 'combos', title: 'Combo Mayorista AirPods 3ra Gen Premium', specs: ['Traducción de idiomas', 'Cancelación de Ruido (ANC)', 'Modo Ambiente'], box: 'S/300 (Pack 5 UN)', wholesale: '-', unit: '-', img: 'airpods_3gen_pack.jpg' },
+            { id: 3, category: 'combos', title: 'Combo Audífonos Pro 4ta Gen', specs: ['Cancelación activa', 'Calidad OEM alta gama', 'Traducción de idiomas'], box: 'S/300 (5 UN)', wholesale: '-', unit: '-', img: 'audifonos_pro_4gen.jpg' },
+            { id: 4, category: 'combos', title: 'Combo JBL Flip 7 (6 Unidades)', specs: ['Bluetooth 5.4', 'Potencia 20W', 'IP67 Agua/Polvo'], box: 'S/270 (6 UN)', wholesale: '-', unit: '-', img: 'jbl_flip7_combo.jpg' },
+            { id: 5, category: 'combos', title: 'Combo GO 4 JBL (6 Unidades)', specs: ['Ultra compacta', 'Hasta 5h batería', 'Sumergible'], box: 'S/150 (6 UN)', wholesale: '-', unit: '-', img: 'jbl_go4_combo.jpg' },
+            { id: 6, category: 'combos', title: 'Lente con Cámara IA Full HD AIMB Glasses', specs: ['Traducción multilingüe', 'Grabación de video', 'Reconocimiento S3 Ultra'], box: 'S/120', wholesale: 'S/130', unit: 'S/150', img: 'aimb_glasses.jpg' },
+            { id: 7, category: 'combos', title: 'Apple Watch + AirPods 2 Gen ANC', specs: ['Combo especial', 'Empaque sellado', 'ANC Activo'], box: 'S/135', wholesale: 'S/140', unit: 'S/150', img: 'apple_watch_airpods.jpg' },
+
+            // CARGADORES Y CABLES
+            { id: 8, category: 'cargadores', title: 'Cubo 20W iPhone Entrada C', specs: ['20W Power Adapter', 'Puerto USB-C', 'Carga rápida'], box: 'S/8', wholesale: 'S/12', unit: 'S/15', img: 'cubo_20w.jpg' },
+            { id: 9, category: 'cargadores', title: 'Cubo 40W iPhone Entrada C', specs: ['40W Dynamic Power Adapter', 'Hasta 60W Max', 'Carga ultrarrápida'], box: 'S/15', wholesale: 'S/18', unit: 'S/25', img: 'cubo_40w.jpg' },
+            { id: 10, category: 'cargadores', title: 'Cable Trenzado C a C (1m)', specs: ['Nailon reforzado', '1 Metro', 'Alta resistencia'], box: 'S/5', wholesale: 'S/8', unit: 'S/10', img: 'cable_cc_trenzado.jpg' },
+            { id: 11, category: 'cargadores', title: 'Cable C a Lightning (1m)', specs: ['Carga rápida', 'Compatibilidad Apple', '1 Metro'], box: 'S/5', wholesale: 'S/8', unit: 'S/10', img: 'cable_clightning_1m.jpg' },
+            { id: 12, category: 'cargadores', title: 'Cable C a Lightning (2m)', specs: ['Carga rápida 2M', 'Largo especial', 'Alta flexibilidad'], box: 'S/5.5', wholesale: 'S/10', unit: 'S/15', img: 'cable_clightning_2m.jpg' },
+            { id: 13, category: 'cargadores', title: 'Combo Cable y Cubo C a C Trenzado', specs: ['Adapter 20W + Cable C a C', 'Edición iPhone 17 Pro Max'], box: 'S/13', wholesale: 'S/18', unit: 'S/20', img: 'combo_cubo_cable_cc.jpg' },
+            { id: 14, category: 'cargadores', title: 'Batería MagSafe 20,000 mAh', specs: ['Carga magnética', 'Alta capacidad', 'Diseño compacto'], box: 'S/32', wholesale: 'S/42', unit: 'S/45', img: 'magsafe_20k.jpg' },
+            { id: 15, category: 'cargadores', title: 'Batería MagSafe 5,000 mAh', specs: ['Powerbank magnético', 'Alineación perfecta'], box: 'S/28', wholesale: 'S/30', unit: 'S/35', img: 'magsafe_5k.jpg' },
+
+            // AUDÍFONOS / AIRPODS
+            { id: 16, category: 'audifonos', title: 'AirPods Max Calidad A1', specs: ['Cancelación activa ANC', 'Almohadillas magnéticas', 'Digital Crown'], box: 'S/80', wholesale: 'S/90', unit: 'S/95', img: 'airpods_max_a1.jpg' },
+            { id: 17, category: 'audifonos', title: 'AirPods Max Calidad A2', specs: ['Varios colores', 'Conexión automática', 'Brazo telescópico'], box: 'S/60', wholesale: 'S/68', unit: 'S/75', img: 'airpods_max_a2.jpg' },
+            { id: 18, category: 'audifonos', title: 'AirPods Pro 2da Gen (+ ANC)', specs: ['Cancelación de ruido activa', 'Puerto Type-C', 'Alta calidad'], box: 'S/48', wholesale: 'S/55', unit: 'S/65', img: 'airpods_pro2_anc.jpg' },
+            { id: 19, category: 'audifonos', title: 'AirPods 4ta Gen (+ ANC)', specs: ['100% Calidad', 'Cancelación ANC', 'Diseño ergonómico'], box: 'S/52', wholesale: 'S/60', unit: 'S/75', img: 'airpods_4gen.jpg' },
+            { id: 20, category: 'audifonos', title: 'AirPods Pro 3ra Gen (+ ANC)', specs: ['Traducción de voz tiempo real', 'Audio espacial', 'Carga MagSafe/C'], box: 'S/55', wholesale: 'S/60', unit: 'S/85', img: 'airpods_pro3.jpg' },
+            { id: 21, category: 'audifonos', title: 'JBL Tour Pro 2 / Pro 3', specs: ['Smart Case con pantalla', 'Touch Display', 'ANC Adaptativo'], box: 'S/40', wholesale: 'S/50', unit: 'S/60', img: 'jbl_tour_pro.jpg' },
+            { id: 22, category: 'audifonos', title: 'Galaxy Buds 3 Pro', specs: ['Diseño renovado', 'Sonido HI-FI 24bit', 'Control por voz'], box: 'S/30', wholesale: 'S/35', unit: 'S/45', img: 'galaxy_buds3.jpg' },
+
+            // PARLANTES
+            { id: 23, category: 'parlantes', title: 'JBL Boombox 4 con Bass', specs: ['60W de potencia', '6-8 horas de uso', 'Bajos reforzados'], box: 'S/180', wholesale: 'S/190', unit: 'S/250', img: 'boombox4.jpg' },
+            { id: 24, category: 'parlantes', title: 'JBL Flip 7', specs: ['25W de potencia', 'Bluetooth 5.4', 'Resistente al agua'], box: 'S/42', wholesale: 'S/47', unit: 'S/55', img: 'flip7.jpg' },
+            { id: 25, category: 'parlantes', title: 'JBL Charge 6', specs: ['Excelente potencia', 'Batería de larga duración', 'Varios colores'], box: '-', wholesale: 'S/58', unit: 'S/69', img: 'charge6.jpg' },
+            { id: 26, category: 'parlantes', title: 'JBL PartyBox 320', specs: ['240 vatios RMS', 'Show de luces LED', 'Efectos DJ'], box: '-', wholesale: 'S/870', unit: 'S/900', img: 'partybox320.jpg' },
+            { id: 27, category: 'parlantes', title: 'Parlante Inteligente Alaxe c/ Pantalla', specs: ['Reloj integrado', 'Luces LED RGB', 'App Connect'], box: 'S/26', wholesale: 'S/35', unit: 'S/40', img: 'alaxe_screen.jpg' },
+            { id: 28, category: 'parlantes', title: 'Parlante Tomate TO-133 Extra Bass', specs: ['100W potencia de salida', 'Estilo militar/calavera'], box: 'S/60', wholesale: 'S/70', unit: 'S/90', img: 'tomate_to133.jpg' },
+
+            // SMARTWATCHES
+            { id: 29, category: 'smartwatch', title: 'Smartwatch Niños TH-C008/C010 con Chip', specs: ['Rastreo GPS', 'Cámara HD', 'IP67 Resistente', 'Llamadas SOS'], box: 'S/125', wholesale: 'S/140', unit: 'S/170', img: 'smartwatch_kids.jpg' },
+            { id: 30, category: 'smartwatch', title: 'Smartwatch T900 Pro Max EVO / GL', specs: ['Pantalla Big 2.03 AMOLED', 'Carga inalámbrica', 'Llamadas Bluetooth'], box: 'S/17', wholesale: 'S/25', unit: 'S/35', img: 't900_promax.jpg' },
+            { id: 31, category: 'smartwatch', title: 'Watch 10 Ultra 3D AMOLED', specs: ['Edición 10mo Aniversario', 'Correas intercambiables'], box: 'S/22', wholesale: 'S/30', unit: 'S/40', img: 'watch10_ultra.jpg' },
+            { id: 32, category: 'smartwatch', title: 'Microwear S11 (Responde WhatsApp)', specs: ['Pantalla AMOLED Premium', 'Notificaciones y respuestas'], box: 'S/220', wholesale: 'S/230', unit: 'S/280', img: 'microwear_s11.jpg' },
+
+            // NOVEDADES
+            { id: 33, category: 'novedades', title: 'Consola Project X Pro 128GB', specs: ['+20,000 Juegos', 'God of War, GTA, Crash', 'Pantalla alta definición'], box: 'S/175', wholesale: 'S/180', unit: 'S/200', img: 'project_x_pro.jpg' },
+            { id: 34, category: 'novedades', title: 'Mini Impresora Térmica Kawaii', specs: ['Impresión sin tinta', 'Conexión Bluetooth', 'Incluye papel'], box: 'S/38', wholesale: 'S/40', unit: 'S/45', img: 'mini_printer.jpg' },
+            { id: 35, category: 'novedades', title: 'Proyector HY 300 Smart Android', specs: ['Resolución HD', 'WiFi Dual / Bluetooth', 'Cine en casa'], box: 'S/135', wholesale: 'S/140', unit: 'S/160', img: 'proyector_hy300.jpg' },
+            { id: 36, category: 'novedades', title: 'Dron E88 Dual Camera', specs: ['Estabilización de vuelo', 'Plegable y portátil', 'Control remoto'], box: 'S/40', wholesale: 'S/50', unit: 'S/60', img: 'drone_e88.jpg' }
+        ];
+
+        let currentCategory = 'all';
+
+        function renderProducts(items) {
+            const grid = document.getElementById('catalogGrid');
+            grid.innerHTML = '';
+
+            items.forEach(product => {
+                const card = document.createElement('div');
+                card.className = 'product-card';
+                card.innerHTML = `
+                    <div class="img-container">
+                        <div class="img-placeholder">[Imagen: ${product.title}]</div>
+                    </div>
+                    <div class="product-info">
+                        <span class="product-tag">${product.category}</span>
+                        <h3 class="product-title">${product.title}</h3>
+                        <ul class="product-specs">
+                            ${product.specs.map(spec => `<li>• ${spec}</li>`).join('')}
+                        </ul>
+                        <div class="price-table">
+                            <div class="price-row">
+                                <span class="price-label">Por Caja:</span>
+                                <span class="price-val">${product.box}</span>
+                            </div>
+                            <div class="price-row">
+                                <span class="price-label">Por Mayor:</span>
+                                <span class="price-val">${product.wholesale}</span>
+                            </div>
+                            <div class="price-row">
+                                <span class="price-label">Unidad:</span>
+                                <span class="price-val">${product.unit}</span>
+                            </div>
+                        </div>
+                    </div>
+                `;
+                grid.appendChild(card);
+            });
+        }
+
+        function filterCategory(cat) {
+            currentCategory = cat;
+            document.querySelectorAll('.filter-btn').forEach(btn => btn.classList.remove('active'));
+            event.target.classList.add('active');
+            applyFilters();
+        }
+
+        function filterProducts() {
+            applyFilters();
+        }
+
+        function applyFilters() {
+            const query = document.getElementById('searchInput').value.toLowerCase();
+            const filtered = products.filter(p => {
+                const matchesCat = (currentCategory === 'all' || p.category === currentCategory);
+                const matchesQuery = p.title.toLowerCase().includes(query) || p.specs.some(s => s.toLowerCase().includes(query));
+                return matchesCat && matchesQuery;
+            });
+            renderProducts(filtered);
+        }
+
+        // Carga inicial
+        renderProducts(products);
+    </script>
+</body>
+</html>
