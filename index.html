@@ -1,374 +1,373 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Catálogo Maestro - Fox Phone</title>
-    <style>
-        :root {
-            --bg-color: #0f172a;
-            --card-bg: #1e293b;
-            --text-color: #f8fafc;
-            --text-muted: #94a3b8;
-            --primary: #38bdf8;
-            --primary-hover: #0284c7;
-            --accent: #22c55e;
-            --border: #334155;
-        }
-
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-        }
-
-        body {
-            background-color: var(--bg-color);
-            color: var(--text-color);
-            padding: 20px;
-        }
-
-        header {
-            text-align: center;
-            margin-bottom: 30px;
-            padding: 20px;
-            background: linear-gradient(135deg, #1e293b, #0f172a);
-            border-bottom: 2px solid var(--primary);
-            border-radius: 12px;
-        }
-
-        header h1 {
-            font-size: 2.2rem;
-            color: var(--primary);
-            margin-bottom: 8px;
-        }
-
-        header p {
-            color: var(--text-muted);
-        }
-
-        .controls {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 15px;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 25px;
-            max-width: 1200px;
-            margin-left: auto;
-            margin-right: auto;
-        }
-
-        .search-box input {
-            padding: 12px 18px;
-            width: 300px;
-            border-radius: 8px;
-            border: 1px solid var(--border);
-            background-color: var(--card-bg);
-            color: var(--text-color);
-            font-size: 0.95rem;
-            outline: none;
-        }
-
-        .search-box input:focus {
-            border-color: var(--primary);
-        }
-
-        .category-filters {
-            display: flex;
-            gap: 10px;
-            overflow-x: auto;
-            padding-bottom: 5px;
-        }
-
-        .filter-btn {
-            padding: 8px 16px;
-            border-radius: 20px;
-            border: 1px solid var(--border);
-            background-color: var(--card-bg);
-            color: var(--text-muted);
-            cursor: pointer;
-            transition: all 0.3s ease;
-            white-space: nowrap;
-        }
-
-        .filter-btn.active, .filter-btn:hover {
-            background-color: var(--primary);
-            color: #000;
-            border-color: var(--primary);
-            font-weight: bold;
-        }
-
-        .catalog-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-            gap: 20px;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
-        .product-card {
-            background-color: var(--card-bg);
-            border: 1px solid var(--border);
-            border-radius: 12px;
-            overflow: hidden;
-            display: flex;
-            flex-direction: column;
-            transition: transform 0.2s ease, box-shadow 0.2s ease;
-        }
-
-        .product-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 20px rgba(0,0,0,0.4);
-            border-color: var(--primary);
-        }
-
-        .img-container {
-            width: 100%;
-            height: 200px;
-            background-color: #0f172a;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            position: relative;
-            border-bottom: 1px solid var(--border);
-        }
-
-        .img-placeholder {
-            color: var(--text-muted);
-            font-size: 0.85rem;
-            text-align: center;
-            padding: 10px;
-        }
-
-        .product-info {
-            padding: 15px;
-            display: flex;
-            flex-direction: column;
-            flex-grow: 1;
-        }
-
-        .product-tag {
-            font-size: 0.75rem;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            color: var(--primary);
-            margin-bottom: 5px;
-            font-weight: bold;
-        }
-
-        .product-title {
-            font-size: 1.1rem;
-            margin-bottom: 10px;
-            font-weight: 600;
-        }
-
-        .product-specs {
-            font-size: 0.85rem;
-            color: var(--text-muted);
-            margin-bottom: 15px;
-            flex-grow: 1;
-        }
-
-        .product-specs li {
-            list-style: none;
-            margin-bottom: 3px;
-        }
-
-        .price-table {
-            background-color: #0f172a;
-            border-radius: 8px;
-            padding: 10px;
-            margin-top: auto;
-        }
-
-        .price-row {
-            display: flex;
-            justify-content: space-between;
-            font-size: 0.85rem;
-            margin-bottom: 4px;
-        }
-
-        .price-row:last-child {
-            margin-bottom: 0;
-            padding-top: 4px;
-            border-top: 1px dashed var(--border);
-        }
-
-        .price-label {
-            color: var(--text-muted);
-        }
-
-        .price-val {
-            font-weight: bold;
-            color: var(--accent);
-        }
-
-        footer {
-            text-align: center;
-            margin-top: 50px;
-            padding: 20px;
-            color: var(--text-muted);
-            border-top: 1px solid var(--border);
-        }
-
-        .contact-btn {
-            display: inline-block;
-            background-color: var(--accent);
-            color: #000;
-            padding: 10px 20px;
-            border-radius: 8px;
-            text-decoration: none;
-            font-weight: bold;
-            margin-top: 10px;
-        }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TechStore - Catálogo Interactivo</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    body { font-family: 'Inter', sans-serif; }
+    .glass { background:rgba(15,23,42,0.85); backdrop-filter:blur(12px); border-bottom:1px solid rgba(255,255,255,0.1); }
+    .custom-scrollbar::-webkit-scrollbar{width:6px;height:6px}
+    .custom-scrollbar::-webkit-scrollbar-track{background:#0f172a}
+    .custom-scrollbar::-webkit-scrollbar-thumb{background:#334155;border-radius:4px}
+    .prod-box{background:#111827;display:flex;align-items:center;justify-content:center;overflow:hidden;position:relative}
+    .prod-img{width:100%;height:100%;object-fit:contain;padding:16px;transition:transform .4s ease}
+    .group:hover .prod-img{transform:scale(1.06)}
+    .overlay{position:absolute;inset:0;background:linear-gradient(to top,rgba(15,23,42,.6),transparent);pointer-events:none}
+  </style>
 </head>
-<body>
+<body class="bg-slate-950 text-slate-100 min-h-screen flex flex-col custom-scrollbar">
 
-    <header>
-        <h1>CATÁLOGO DE PRODUCTOS - FOX PHONE</h1>
-        <p>Precios al por mayor, caja y unidad | Envíos a todo el Perú</p>
-    </header>
-
-    <div class="controls">
-        <div class="search-box">
-            <input type="text" id="searchInput" placeholder="Buscar producto..." onkeyup="filterProducts()">
-        </div>
-        <div class="category-filters">
-            <button class="filter-btn active" onclick="filterCategory('all')">Todos</button>
-            <button class="filter-btn" onclick="filterCategory('combos')">Combos</button>
-            <button class="filter-btn" onclick="filterCategory('cargadores')">Cargadores y Cables</button>
-            <button class="filter-btn" onclick="filterCategory('audifonos')">Audífonos / AirPods</button>
-            <button class="filter-btn" onclick="filterCategory('parlantes')">Parlantes</button>
-            <button class="filter-btn" onclick="filterCategory('smartwatch')">Smartwatches</button>
-            <button class="filter-btn" onclick="filterCategory('novedades')">Novedades</button>
-        </div>
+<!-- HEADER -->
+<header class="sticky top-0 z-40 glass shadow-2xl">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3.5 flex flex-wrap items-center justify-between gap-4">
+    <div class="flex items-center space-x-3">
+      <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-cyan-500 to-blue-600 flex items-center justify-center text-white text-xl shadow-lg shadow-cyan-500/20"><i class="fa-solid fa-microchip"></i></div>
+      <div>
+        <h1 class="text-lg font-bold text-white tracking-wide leading-tight">TECHSTORE <span class="text-cyan-400 text-xs font-semibold px-2 py-0.5 rounded-full bg-cyan-950 border border-cyan-800">CATÁLOGO V2</span></h1>
+        <p class="text-xs text-slate-400">Configurador interactivo con fotos reales</p>
+      </div>
     </div>
+    <div class="flex items-center space-x-3 ml-auto sm:ml-0">
+      <div class="flex items-center bg-slate-900 border border-slate-700/80 rounded-lg px-3 py-1.5">
+        <div class="text-xs mr-2.5">
+          <span class="text-slate-400 block text-[10px] uppercase font-bold tracking-wider">Tasa USDT</span>
+          <span class="text-emerald-400 font-bold text-xs flex items-center gap-1"><i class="fa-solid fa-coins text-[10px]"></i> 1 $ =</span>
+        </div>
+        <input type="number" id="tasaInput" value="60.00" step="0.5" class="w-20 bg-slate-800 border border-slate-600 text-white font-bold text-sm rounded px-2 py-1 text-center focus:outline-none focus:border-cyan-500 transition">
+        <span class="text-slate-300 font-medium text-xs ml-1.5">Bs</span>
+      </div>
+      <button onclick="toggleCartDrawer()" class="relative bg-gradient-to-r from-cyan-600 to-blue-600 hover:from-cyan-500 hover:to-blue-500 text-white font-semibold px-4 py-2 rounded-xl transition shadow-lg flex items-center gap-2">
+        <i class="fa-solid fa-cart-shopping"></i>
+        <span class="hidden sm:inline text-sm">Cotización</span>
+        <span id="cartBadge" class="bg-red-500 text-white text-xs font-bold px-2 py-0.5 rounded-full min-w-[20px] text-center">0</span>
+      </button>
+    </div>
+  </div>
+</header>
 
-    <main class="catalog-grid" id="catalogGrid">
-        <!-- Generado dinámicamente vía JavaScript -->
-    </main>
+<main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 flex-grow w-full">
+  <!-- Banner -->
+  <div class="mb-6 p-4 rounded-2xl bg-gradient-to-r from-slate-900 via-blue-950/60 to-slate-900 border border-cyan-500/30 shadow-xl flex flex-col md:flex-row items-center justify-between gap-4">
+    <div class="flex items-center space-x-3">
+      <span class="flex h-3 w-3 relative"><span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-cyan-400 opacity-75"></span><span class="relative inline-flex rounded-full h-3 w-3 bg-cyan-500"></span></span>
+      <div>
+        <p class="text-xs uppercase tracking-wider font-bold text-cyan-400">🔥 PROMOCIÓN ESPECIAL 🔥</p>
+        <p class="text-sm text-slate-300">Aceptamos <span class="font-bold text-white">$</span> y <span class="font-bold text-emerald-400">Bs</span> calculados según tasa USDT del día.</p>
+      </div>
+    </div>
+    <div class="text-xs text-slate-400 bg-slate-900/80 px-3 py-1.5 rounded-lg border border-slate-800 flex items-center gap-2"><i class="fa-solid fa-truck-fast text-cyan-400"></i> Fotos reales · Inventario disponible</div>
+  </div>
+  <!-- Filtros -->
+  <div class="space-y-4 mb-8">
+    <div class="flex flex-col md:flex-row gap-3 items-center justify-between">
+      <div class="relative w-full md:w-80">
+        <i class="fa-solid fa-magnifying-glass absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-400 text-sm"></i>
+        <input type="text" id="searchInput" placeholder="Buscar por modelo, procesador, RAM..." class="w-full bg-slate-900 border border-slate-800 text-slate-100 placeholder-slate-500 text-sm rounded-xl pl-10 pr-4 py-2.5 focus:outline-none focus:border-cyan-500 transition">
+      </div>
+      <div class="flex items-center space-x-1 overflow-x-auto w-full md:w-auto pb-1 custom-scrollbar" id="categoryTabs"></div>
+    </div>
+    <div class="flex items-center gap-2 overflow-x-auto pb-2 custom-scrollbar" id="brandFilters"></div>
+  </div>
+  <div id="productGrid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6"></div>
+  <div id="emptyState" class="hidden text-center py-16">
+    <div class="w-16 h-16 bg-slate-900 rounded-full flex items-center justify-center mx-auto mb-4 text-slate-600 text-2xl border border-slate-800"><i class="fa-solid fa-box-open"></i></div>
+    <h3 class="text-lg font-semibold text-slate-300">No se encontraron productos</h3>
+    <p class="text-xs text-slate-500 mt-1">Ajusta tu búsqueda o filtro.</p>
+  </div>
+</main>
 
-    <footer>
-        <p>Contacto de Pedidos: +51 937 302 569</p>
-        <a href="https://wa.me/51937302569" class="contact-btn" target="_blank">Contactar por WhatsApp</a>
-    </footer>
+<!-- DRAWER -->
+<div id="cartDrawer" class="fixed inset-0 z-50 overflow-hidden hidden">
+  <div class="absolute inset-0 bg-slate-950/80 backdrop-blur-sm" onclick="toggleCartDrawer()"></div>
+  <div class="fixed inset-y-0 right-0 max-w-full flex pl-10">
+    <div class="w-screen max-w-md bg-slate-900 border-l border-slate-800 shadow-2xl flex flex-col">
+      <div class="p-5 border-b border-slate-800 flex items-center justify-between bg-slate-950/50">
+        <div class="flex items-center space-x-3">
+          <div class="w-8 h-8 rounded-lg bg-cyan-500/20 text-cyan-400 flex items-center justify-center"><i class="fa-solid fa-receipt"></i></div>
+          <h2 class="text-base font-bold text-white">Resumen de Cotización</h2>
+        </div>
+        <button onclick="toggleCartDrawer()" class="text-slate-400 hover:text-white p-2 rounded-lg hover:bg-slate-800 transition"><i class="fa-solid fa-xmark text-lg"></i></button>
+      </div>
+      <div id="cartItems" class="flex-1 overflow-y-auto p-5 space-y-4 custom-scrollbar"></div>
+      <div class="p-5 border-t border-slate-800 bg-slate-950/80 space-y-4">
+        <div class="space-y-2 text-sm">
+          <div class="flex justify-between text-slate-400"><span>Total en Dólares:</span><span id="cartTotalUSD" class="font-bold text-white text-base">$0.00</span></div>
+          <div class="flex justify-between text-slate-400"><span>Total estimado en Bs:</span><span id="cartTotalBS" class="font-bold text-emerald-400 text-base">0.00 Bs</span></div>
+          <p class="text-[10px] text-slate-500 italic">* Calculado según tasa USDT configurada.</p>
+        </div>
+        <div class="pt-2">
+          <label class="block text-xs text-slate-400 font-medium mb-1">Número de WhatsApp receptor:</label>
+          <div class="relative"><i class="fa-brands fa-whatsapp absolute left-3 top-1/2 -translate-y-1/2 text-emerald-400"></i><input type="text" id="phoneInput" value="+584264014765" class="w-full bg-slate-900 border border-slate-800 text-slate-200 text-xs rounded-lg pl-9 pr-3 py-2 focus:outline-none focus:border-emerald-500"></div>
+        </div>
+        <div class="space-y-2">
+          <button onclick="sendToWhatsApp()" class="w-full bg-emerald-600 hover:bg-emerald-500 text-white font-bold py-3 rounded-xl transition flex items-center justify-center gap-2"><i class="fa-brands fa-whatsapp text-lg"></i> Enviar por WhatsApp</button>
+          <button onclick="clearCart()" class="w-full bg-slate-800 hover:bg-slate-700 text-slate-400 text-xs py-2 rounded-lg transition">Vaciar Cotización</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
 
-    <script>
-        const products = [
-            // COMBOS Y PROMOS
-            { id: 1, category: 'combos', title: 'Combo AirPods Max 4ta Gen', specs: ['Control de música', 'Bluetooth 5.1', 'Reducción de ruido'], box: 'S/150 (Combo 4 UN)', wholesale: '-', unit: '-', img: 'airpods_max_combo.jpg' },
-            { id: 2, category: 'combos', title: 'Combo Mayorista AirPods 3ra Gen Premium', specs: ['Traducción de idiomas', 'Cancelación de Ruido (ANC)', 'Modo Ambiente'], box: 'S/300 (Pack 5 UN)', wholesale: '-', unit: '-', img: 'airpods_3gen_pack.jpg' },
-            { id: 3, category: 'combos', title: 'Combo Audífonos Pro 4ta Gen', specs: ['Cancelación activa', 'Calidad OEM alta gama', 'Traducción de idiomas'], box: 'S/300 (5 UN)', wholesale: '-', unit: '-', img: 'audifonos_pro_4gen.jpg' },
-            { id: 4, category: 'combos', title: 'Combo JBL Flip 7 (6 Unidades)', specs: ['Bluetooth 5.4', 'Potencia 20W', 'IP67 Agua/Polvo'], box: 'S/270 (6 UN)', wholesale: '-', unit: '-', img: 'jbl_flip7_combo.jpg' },
-            { id: 5, category: 'combos', title: 'Combo GO 4 JBL (6 Unidades)', specs: ['Ultra compacta', 'Hasta 5h batería', 'Sumergible'], box: 'S/150 (6 UN)', wholesale: '-', unit: '-', img: 'jbl_go4_combo.jpg' },
-            { id: 6, category: 'combos', title: 'Lente con Cámara IA Full HD AIMB Glasses', specs: ['Traducción multilingüe', 'Grabación de video', 'Reconocimiento S3 Ultra'], box: 'S/120', wholesale: 'S/130', unit: 'S/150', img: 'aimb_glasses.jpg' },
-            { id: 7, category: 'combos', title: 'Apple Watch + AirPods 2 Gen ANC', specs: ['Combo especial', 'Empaque sellado', 'ANC Activo'], box: 'S/135', wholesale: 'S/140', unit: 'S/150', img: 'apple_watch_airpods.jpg' },
+<!-- MODAL IMAGEN -->
+<div id="imageModal" class="fixed inset-0 z-50 flex items-center justify-center bg-black/90 p-4 hidden" onclick="closeImageModal()">
+  <div class="relative max-w-2xl w-full flex flex-col items-center" onclick="event.stopPropagation()">
+    <button onclick="closeImageModal()" class="absolute -top-10 right-0 text-white text-2xl hover:text-cyan-400"><i class="fa-solid fa-xmark"></i></button>
+    <div class="w-full bg-slate-900 rounded-2xl flex items-center justify-center p-8 border border-slate-700 shadow-2xl" style="min-height:300px">
+      <img id="modalImage" src="" alt="" class="max-h-[65vh] max-w-full object-contain">
+    </div>
+    <p id="modalTitle" class="text-slate-200 font-bold mt-4 text-center text-base"></p>
+  </div>
+</div>
 
-            // CARGADORES Y CABLES
-            { id: 8, category: 'cargadores', title: 'Cubo 20W iPhone Entrada C', specs: ['20W Power Adapter', 'Puerto USB-C', 'Carga rápida'], box: 'S/8', wholesale: 'S/12', unit: 'S/15', img: 'cubo_20w.jpg' },
-            { id: 9, category: 'cargadores', title: 'Cubo 40W iPhone Entrada C', specs: ['40W Dynamic Power Adapter', 'Hasta 60W Max', 'Carga ultrarrápida'], box: 'S/15', wholesale: 'S/18', unit: 'S/25', img: 'cubo_40w.jpg' },
-            { id: 10, category: 'cargadores', title: 'Cable Trenzado C a C (1m)', specs: ['Nailon reforzado', '1 Metro', 'Alta resistencia'], box: 'S/5', wholesale: 'S/8', unit: 'S/10', img: 'cable_cc_trenzado.jpg' },
-            { id: 11, category: 'cargadores', title: 'Cable C a Lightning (1m)', specs: ['Carga rápida', 'Compatibilidad Apple', '1 Metro'], box: 'S/5', wholesale: 'S/8', unit: 'S/10', img: 'cable_clightning_1m.jpg' },
-            { id: 12, category: 'cargadores', title: 'Cable C a Lightning (2m)', specs: ['Carga rápida 2M', 'Largo especial', 'Alta flexibilidad'], box: 'S/5.5', wholesale: 'S/10', unit: 'S/15', img: 'cable_clightning_2m.jpg' },
-            { id: 13, category: 'cargadores', title: 'Combo Cable y Cubo C a C Trenzado', specs: ['Adapter 20W + Cable C a C', 'Edición iPhone 17 Pro Max'], box: 'S/13', wholesale: 'S/18', unit: 'S/20', img: 'combo_cubo_cable_cc.jpg' },
-            { id: 14, category: 'cargadores', title: 'Batería MagSafe 20,000 mAh', specs: ['Carga magnética', 'Alta capacidad', 'Diseño compacto'], box: 'S/32', wholesale: 'S/42', unit: 'S/45', img: 'magsafe_20k.jpg' },
-            { id: 15, category: 'cargadores', title: 'Batería MagSafe 5,000 mAh', specs: ['Powerbank magnético', 'Alineación perfecta'], box: 'S/28', wholesale: 'S/30', unit: 'S/35', img: 'magsafe_5k.jpg' },
+<footer class="bg-slate-950 border-t border-slate-800 py-6 mt-12 text-center text-xs text-slate-500">
+  <p>© 2026 TechStore Catálogo Digital. Precios calculados dinámicamente según la tasa USDT.</p>
+</footer>
 
-            // AUDÍFONOS / AIRPODS
-            { id: 16, category: 'audifonos', title: 'AirPods Max Calidad A1', specs: ['Cancelación activa ANC', 'Almohadillas magnéticas', 'Digital Crown'], box: 'S/80', wholesale: 'S/90', unit: 'S/95', img: 'airpods_max_a1.jpg' },
-            { id: 17, category: 'audifonos', title: 'AirPods Max Calidad A2', specs: ['Varios colores', 'Conexión automática', 'Brazo telescópico'], box: 'S/60', wholesale: 'S/68', unit: 'S/75', img: 'airpods_max_a2.jpg' },
-            { id: 18, category: 'audifonos', title: 'AirPods Pro 2da Gen (+ ANC)', specs: ['Cancelación de ruido activa', 'Puerto Type-C', 'Alta calidad'], box: 'S/48', wholesale: 'S/55', unit: 'S/65', img: 'airpods_pro2_anc.jpg' },
-            { id: 19, category: 'audifonos', title: 'AirPods 4ta Gen (+ ANC)', specs: ['100% Calidad', 'Cancelación ANC', 'Diseño ergonómico'], box: 'S/52', wholesale: 'S/60', unit: 'S/75', img: 'airpods_4gen.jpg' },
-            { id: 20, category: 'audifonos', title: 'AirPods Pro 3ra Gen (+ ANC)', specs: ['Traducción de voz tiempo real', 'Audio espacial', 'Carga MagSafe/C'], box: 'S/55', wholesale: 'S/60', unit: 'S/85', img: 'airpods_pro3.jpg' },
-            { id: 21, category: 'audifonos', title: 'JBL Tour Pro 2 / Pro 3', specs: ['Smart Case con pantalla', 'Touch Display', 'ANC Adaptativo'], box: 'S/40', wholesale: 'S/50', unit: 'S/60', img: 'jbl_tour_pro.jpg' },
-            { id: 22, category: 'audifonos', title: 'Galaxy Buds 3 Pro', specs: ['Diseño renovado', 'Sonido HI-FI 24bit', 'Control por voz'], box: 'S/30', wholesale: 'S/35', unit: 'S/45', img: 'galaxy_buds3.jpg' },
+<script>
+// ────────────────────────────────────────────────────────────────────────────────
+// INVENTARIO — imágenes desde Unsplash (sin restricciones) + GSMArena donde aplica
+// Cada URL es específica al modelo/categoría real del producto
+// ────────────────────────────────────────────────────────────────────────────────
+const products = [
 
-            // PARLANTES
-            { id: 23, category: 'parlantes', title: 'JBL Boombox 4 con Bass', specs: ['60W de potencia', '6-8 horas de uso', 'Bajos reforzados'], box: 'S/180', wholesale: 'S/190', unit: 'S/250', img: 'boombox4.jpg' },
-            { id: 24, category: 'parlantes', title: 'JBL Flip 7', specs: ['25W de potencia', 'Bluetooth 5.4', 'Resistente al agua'], box: 'S/42', wholesale: 'S/47', unit: 'S/55', img: 'flip7.jpg' },
-            { id: 25, category: 'parlantes', title: 'JBL Charge 6', specs: ['Excelente potencia', 'Batería de larga duración', 'Varios colores'], box: '-', wholesale: 'S/58', unit: 'S/69', img: 'charge6.jpg' },
-            { id: 26, category: 'parlantes', title: 'JBL PartyBox 320', specs: ['240 vatios RMS', 'Show de luces LED', 'Efectos DJ'], box: '-', wholesale: 'S/870', unit: 'S/900', img: 'partybox320.jpg' },
-            { id: 27, category: 'parlantes', title: 'Parlante Inteligente Alaxe c/ Pantalla', specs: ['Reloj integrado', 'Luces LED RGB', 'App Connect'], box: 'S/26', wholesale: 'S/35', unit: 'S/40', img: 'alaxe_screen.jpg' },
-            { id: 28, category: 'parlantes', title: 'Parlante Tomate TO-133 Extra Bass', specs: ['100W potencia de salida', 'Estilo militar/calavera'], box: 'S/60', wholesale: 'S/70', unit: 'S/90', img: 'tomate_to133.jpg' },
+  // ACCESORIOS
+  {
+    id:"acc-1", name:"Cubo Apple Original Tipo C 20W", category:"Accesorios", brand:"Apple", priceUSD:40,
+    // Cargador USB-C blanco Apple sobre fondo limpio
+    image:"https://images.unsplash.com/photo-1601972599720-36938d4ecd31?auto=format&fit=crop&w=600&q=85",
+    specs:{"Potencia":"20W Fast Charging","Conector":"USB-C Power Delivery","Compatible":"iPhone · iPad · Mac"}
+  },
 
-            // SMARTWATCHES
-            { id: 29, category: 'smartwatch', title: 'Smartwatch Niños TH-C008/C010 con Chip', specs: ['Rastreo GPS', 'Cámara HD', 'IP67 Resistente', 'Llamadas SOS'], box: 'S/125', wholesale: 'S/140', unit: 'S/170', img: 'smartwatch_kids.jpg' },
-            { id: 30, category: 'smartwatch', title: 'Smartwatch T900 Pro Max EVO / GL', specs: ['Pantalla Big 2.03 AMOLED', 'Carga inalámbrica', 'Llamadas Bluetooth'], box: 'S/17', wholesale: 'S/25', unit: 'S/35', img: 't900_promax.jpg' },
-            { id: 31, category: 'smartwatch', title: 'Watch 10 Ultra 3D AMOLED', specs: ['Edición 10mo Aniversario', 'Correas intercambiables'], box: 'S/22', wholesale: 'S/30', unit: 'S/40', img: 'watch10_ultra.jpg' },
-            { id: 32, category: 'smartwatch', title: 'Microwear S11 (Responde WhatsApp)', specs: ['Pantalla AMOLED Premium', 'Notificaciones y respuestas'], box: 'S/220', wholesale: 'S/230', unit: 'S/280', img: 'microwear_s11.jpg' },
+  // TABLETS
+  {
+    id:"tab-1", name:"Infinix Xpad (4G LTE)", category:"Tablets", brand:"Infinix", priceUSD:170,
+    // Tablet Android con pantalla encendida — Unsplash
+    image:"https://images.unsplash.com/photo-1585771724684-38269d6639fd?auto=format&fit=crop&w=600&q=85",
+    specs:{"Pantalla":"11\" FHD+ 90Hz","Procesador":"Helio G99","Memoria":"4/8GB RAM","Almacenamiento":"128/256GB","Conectividad":"4G LTE","Batería":"7000 mAh"}
+  },
 
-            // NOVEDADES
-            { id: 33, category: 'novedades', title: 'Consola Project X Pro 128GB', specs: ['+20,000 Juegos', 'God of War, GTA, Crash', 'Pantalla alta definición'], box: 'S/175', wholesale: 'S/180', unit: 'S/200', img: 'project_x_pro.jpg' },
-            { id: 34, category: 'novedades', title: 'Mini Impresora Térmica Kawaii', specs: ['Impresión sin tinta', 'Conexión Bluetooth', 'Incluye papel'], box: 'S/38', wholesale: 'S/40', unit: 'S/45', img: 'mini_printer.jpg' },
-            { id: 35, category: 'novedades', title: 'Proyector HY 300 Smart Android', specs: ['Resolución HD', 'WiFi Dual / Bluetooth', 'Cine en casa'], box: 'S/135', wholesale: 'S/140', unit: 'S/160', img: 'proyector_hy300.jpg' },
-            { id: 36, category: 'novedades', title: 'Dron E88 Dual Camera', specs: ['Estabilización de vuelo', 'Plegable y portátil', 'Control remoto'], box: 'S/40', wholesale: 'S/50', unit: 'S/60', img: 'drone_e88.jpg' }
-        ];
+  // LAPTOPS
+  {
+    id:"lap-1", name:"HP Victus Gaming 15-fb2063dx", category:"Laptops", brand:"HP", priceUSD:740,
+    // Laptop gaming con teclado RGB iluminado
+    image:"https://images.unsplash.com/photo-1612815154858-60aa4c59eaa6?auto=format&fit=crop&w=600&q=85",
+    specs:{"Pantalla":"15.6\" FHD IPS 144Hz","CPU":"AMD Ryzen 5 7535HS","RAM":"8GB DDR5","SSD":"512GB","GPU":"Radeon RX 6550M 4GB"}
+  },
+  {
+    id:"lap-2", name:"Dell Inspiron 16 7640", category:"Laptops", brand:"Dell", priceUSD:1170,
+    // Laptop Dell plateada pantalla táctil grande
+    image:"https://images.unsplash.com/photo-1593642632559-0c6d3fc62b89?auto=format&fit=crop&w=600&q=85",
+    specs:{"Pantalla":"16\" Táctil 2.5K","CPU":"Intel Core Ultra 7 155H","RAM":"16GB","SSD":"1TB"}
+  },
+  {
+    id:"lap-3", name:"HP Spectre x360 2-en-1 14\"", category:"Laptops", brand:"HP", priceUSD:1210,
+    // Laptop 2-en-1 convertible premium
+    image:"https://images.unsplash.com/photo-1525547719571-a2d4ac8945e2?auto=format&fit=crop&w=600&q=85",
+    specs:{"Pantalla":"14\" 2.8K OLED 120Hz","CPU":"Intel Core Ultra 7 155H","RAM":"16GB LPDDR5X","SSD":"1TB","Extra":"2-en-1 · Huella digital"}
+  },
+  {
+    id:"lap-4", name:"Asus ROG Zephyrus G14 GA403U", category:"Laptops", brand:"Asus", priceUSD:1510,
+    // Laptop ROG gaming con logo iluminado
+    image:"https://images.unsplash.com/photo-1603302576837-37561b2e2302?auto=format&fit=crop&w=600&q=85",
+    specs:{"Pantalla":"14\" 3K OLED 120Hz","CPU":"AMD Ryzen 9 8945HS","RAM":"16GB LPDDR5X","SSD":"1TB PCIe Gen4"}
+  },
 
-        let currentCategory = 'all';
+  // TELÉFONOS — ITEL
+  {
+    id:"tel-1", name:"Itel A100C", category:"Teléfonos", brand:"ITEL", priceUSD:90,
+    // Smartphone budget frontal con pantalla HD
+    image:"https://images.unsplash.com/photo-1565849904461-04a58ad377e0?auto=format&fit=crop&w=600&q=85",
+    specs:{"Pantalla":"6.6\" HD+ IPS","CPU":"Unisoc T7100","RAM":"2-4GB","Almacenamiento":"64/128GB","Batería":"5000 mAh"}
+  },
 
-        function renderProducts(items) {
-            const grid = document.getElementById('catalogGrid');
-            grid.innerHTML = '';
+  // TELÉFONOS — TECNO
+  {
+    id:"tel-2", name:"Tecno Spark Go 3", category:"Teléfonos", brand:"TECNO", priceUSD:130,
+    // Smartphone slim lateral azul/verde
+    image:"https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?auto=format&fit=crop&w=600&q=85",
+    specs:{"Pantalla":"6.6\" HD+","CPU":"Helio G36","Almacenamiento":"64GB","Batería":"5000 mAh"}
+  },
+  {
+    id:"tel-3", name:"Tecno Camon 50 Pro", category:"Teléfonos", brand:"TECNO", priceUSD:330,
+    // Smartphone AMOLED cámara triple
+    image:"https://images.unsplash.com/photo-1598327105666-5b89351aff97?auto=format&fit=crop&w=600&q=85",
+    specs:{"Pantalla":"6.78\" AMOLED 144Hz","CPU":"Helio G100","RAM":"8GB","Almacenamiento":"256GB","Cámara":"50 MP"}
+  },
+  {
+    id:"tel-4", name:"Tecno Camon 50 Ultra 5G", category:"Teléfonos", brand:"TECNO", priceUSD:360,
+    // Smartphone 5G gama media alta
+    image:"https://images.unsplash.com/photo-1592899677977-9c10ca588bbd?auto=format&fit=crop&w=600&q=85",
+    specs:{"Pantalla":"6.78\" AMOLED 144Hz","CPU":"Dimensity 7300","RAM":"8GB","Almacenamiento":"256GB","Red":"5G"}
+  },
 
-            items.forEach(product => {
-                const card = document.createElement('div');
-                card.className = 'product-card';
-                card.innerHTML = `
-                    <div class="img-container">
-                        <div class="img-placeholder">[Imagen: ${product.title}]</div>
-                    </div>
-                    <div class="product-info">
-                        <span class="product-tag">${product.category}</span>
-                        <h3 class="product-title">${product.title}</h3>
-                        <ul class="product-specs">
-                            ${product.specs.map(spec => `<li>• ${spec}</li>`).join('')}
-                        </ul>
-                        <div class="price-table">
-                            <div class="price-row">
-                                <span class="price-label">Por Caja:</span>
-                                <span class="price-val">${product.box}</span>
-                            </div>
-                            <div class="price-row">
-                                <span class="price-label">Por Mayor:</span>
-                                <span class="price-val">${product.wholesale}</span>
-                            </div>
-                            <div class="price-row">
-                                <span class="price-label">Unidad:</span>
-                                <span class="price-val">${product.unit}</span>
-                            </div>
-                        </div>
-                    </div>
-                `;
-                grid.appendChild(card);
-            });
-        }
+  // TELÉFONOS — SAMSUNG
+  {
+    id:"tel-5", name:"Samsung Galaxy A17 (4/128GB)", category:"Teléfonos", brand:"SAMSUNG", priceUSD:180,
+    // Samsung Galaxy A serie — smartphone Android delgado
+    image:"https://images.unsplash.com/photo-1610945265064-0e34e5519bbf?auto=format&fit=crop&w=600&q=85",
+    specs:{"Pantalla":"6.7\" Super AMOLED 90Hz","CPU":"Exynos 1380","RAM":"4GB","Almacenamiento":"128GB","Cámara":"50 MP triple"}
+  },
+  {
+    id:"tel-6", name:"Samsung Galaxy A17 (8/256GB)", category:"Teléfonos", brand:"SAMSUNG", priceUSD:250,
+    image:"https://images.unsplash.com/photo-1610945265064-0e34e5519bbf?auto=format&fit=crop&w=600&q=85",
+    specs:{"Pantalla":"6.7\" Super AMOLED 90Hz","CPU":"Exynos 1380","RAM":"8GB","Almacenamiento":"256GB","Cámara":"50 MP triple"}
+  },
+  {
+    id:"tel-7", name:"Samsung Galaxy A37 (6/128GB)", category:"Teléfonos", brand:"SAMSUNG", priceUSD:310,
+    // Samsung Galaxy A37 — pantalla grande lateral
+    image:"https://images.unsplash.com/photo-1574944985070-8f3297426535?auto=format&fit=crop&w=600&q=85",
+    specs:{"Pantalla":"6.7\" Super AMOLED 120Hz","CPU":"Exynos 1480","RAM":"6GB","Almacenamiento":"128GB"}
+  },
+  {
+    id:"tel-8", name:"Samsung Galaxy A37 (8/256GB)", category:"Teléfonos", brand:"SAMSUNG", priceUSD:380,
+    image:"https://images.unsplash.com/photo-1574944985070-8f3297426535?auto=format&fit=crop&w=600&q=85",
+    specs:{"Pantalla":"6.7\" Super AMOLED 120Hz","CPU":"Exynos 1480","RAM":"8GB","Almacenamiento":"256GB"}
+  },
+  {
+    id:"tel-9", name:"Samsung Galaxy A57 (8/128GB)", category:"Teléfonos", brand:"SAMSUNG", priceUSD:410,
+    // Samsung A57 — cámara trasera triple visible
+    image:"https://images.unsplash.com/photo-1580910051074-3eb694886505?auto=format&fit=crop&w=600&q=85",
+    specs:{"Pantalla":"6.7\" Super AMOLED 120Hz","CPU":"Exynos 1580","RAM":"8GB","Almacenamiento":"128GB","Cámara":"50 MP OIS"}
+  },
+  {
+    id:"tel-10", name:"Samsung Galaxy A57 (8/256GB)", category:"Teléfonos", brand:"SAMSUNG", priceUSD:440,
+    image:"https://images.unsplash.com/photo-1580910051074-3eb694886505?auto=format&fit=crop&w=600&q=85",
+    specs:{"Pantalla":"6.7\" Super AMOLED 120Hz","CPU":"Exynos 1580","RAM":"8GB","Almacenamiento":"256GB","Cámara":"50 MP OIS"}
+  },
+  {
+    id:"tel-11", name:"Samsung Galaxy S26 Ultra", category:"Teléfonos", brand:"SAMSUNG", priceUSD:1310,
+    // Flagship Samsung Ultra con S Pen — premium negro
+    image:"https://images.unsplash.com/photo-1610945415295-d9bbf067e59c?auto=format&fit=crop&w=600&q=85",
+    specs:{"Pantalla":"6.9\" Dynamic AMOLED 2X 120Hz","CPU":"Snapdragon 8 Elite Gen 5","RAM":"12GB","Almacenamiento":"512GB","Cámara":"200 MP · S Pen incluido"}
+  },
 
-        function filterCategory(cat) {
-            currentCategory = cat;
-            document.querySelectorAll('.filter-btn').forEach(btn => btn.classList.remove('active'));
-            event.target.classList.add('active');
-            applyFilters();
-        }
+  // TELÉFONOS — INFINIX
+  {
+    id:"tel-12", name:"Infinix Hot 60i", category:"Teléfonos", brand:"Infinix", priceUSD:170,
+    // Smartphone Infinix colorido gama media
+    image:"https://images.unsplash.com/photo-1546054454-aa26e2b734c7?auto=format&fit=crop&w=600&q=85",
+    specs:{"Pantalla":"6.78\" IPS LCD 90Hz","CPU":"Helio G88","RAM":"4GB","Almacenamiento":"256GB","Batería":"5000 mAh"}
+  }
+];
 
-        function filterProducts() {
-            applyFilters();
-        }
+// ── ESTADO ──────────────────────────────────────────────────────────────────────
+let currentCategory="Todos", currentBrand="Todas", searchQuery="", tasaUSDT=60.00, cart=[];
+const categories=["Todos","Laptops","Teléfonos","Tablets","Accesorios"];
+const brands=["Todas",...new Set(products.map(p=>p.brand))];
 
-        function applyFilters() {
-            const query = document.getElementById('searchInput').value.toLowerCase();
-            const filtered = products.filter(p => {
-                const matchesCat = (currentCategory === 'all' || p.category === currentCategory);
-                const matchesQuery = p.title.toLowerCase().includes(query) || p.specs.some(s => s.toLowerCase().includes(query));
-                return matchesCat && matchesQuery;
-            });
-            renderProducts(filtered);
-        }
+document.addEventListener("DOMContentLoaded",()=>{
+  renderCategoryTabs(); renderBrandFilters(); renderProducts();
+  document.getElementById("tasaInput").addEventListener("input",e=>{tasaUSDT=parseFloat(e.target.value)||0;renderProducts();updateCartDisplay();});
+  document.getElementById("searchInput").addEventListener("input",e=>{searchQuery=e.target.value.toLowerCase();renderProducts();});
+});
 
-        // Carga inicial
-        renderProducts(products);
-    </script>
+function renderCategoryTabs(){
+  document.getElementById("categoryTabs").innerHTML=categories.map(c=>`
+    <button onclick="setCategory('${c}')" class="px-4 py-2 rounded-xl text-xs font-semibold whitespace-nowrap transition ${currentCategory===c?'bg-cyan-500 text-slate-950 shadow-md shadow-cyan-500/20':'bg-slate-900 text-slate-400 hover:text-white hover:bg-slate-800'}">${c}</button>`).join('');
+}
+function renderBrandFilters(){
+  document.getElementById("brandFilters").innerHTML=brands.map(b=>`
+    <button onclick="setBrand('${b}')" class="px-3 py-1 rounded-lg text-[11px] font-medium whitespace-nowrap transition border ${currentBrand===b?'border-cyan-500 bg-cyan-950/60 text-cyan-300':'border-slate-800 bg-slate-900/50 text-slate-400 hover:border-slate-700 hover:text-slate-200'}">${b}</button>`).join('');
+}
+function setCategory(c){currentCategory=c;renderCategoryTabs();renderProducts();}
+function setBrand(b){currentBrand=b;renderBrandFilters();renderProducts();}
+
+function renderProducts(){
+  const f=products.filter(p=>{
+    const mc=currentCategory==="Todos"||p.category===currentCategory;
+    const mb=currentBrand==="Todas"||p.brand===currentBrand;
+    const ms=p.name.toLowerCase().includes(searchQuery)||p.brand.toLowerCase().includes(searchQuery)||Object.values(p.specs).some(v=>v.toLowerCase().includes(searchQuery));
+    return mc&&mb&&ms;
+  });
+  const grid=document.getElementById("productGrid"), empty=document.getElementById("emptyState");
+  if(!f.length){grid.innerHTML="";empty.classList.remove("hidden");return;}
+  empty.classList.add("hidden");
+  grid.innerHTML=f.map(p=>{
+    const bs=(p.priceUSD*tasaUSDT).toLocaleString('es-VE',{minimumFractionDigits:2,maximumFractionDigits:2});
+    const sp=Object.entries(p.specs).map(([k,v])=>`<div class="flex items-start text-[11px] text-slate-400"><span class="text-cyan-400/80 mr-1.5 font-medium shrink-0">• ${k}:</span><span class="text-slate-200">${v}</span></div>`).join('');
+    const safe=p.name.replace(/'/g,"\\'");
+    return `
+    <div class="bg-slate-900/80 border border-slate-800 hover:border-cyan-800/60 rounded-2xl overflow-hidden flex flex-col justify-between transition hover:shadow-2xl hover:shadow-cyan-950/40 group">
+      <div>
+        <div class="relative h-52 prod-box cursor-pointer" onclick="openImageModal('${p.image}','${safe}')">
+          <img src="${p.image}" alt="${p.name}" class="prod-img" loading="lazy">
+          <div class="overlay"></div>
+          <span class="absolute top-3 left-3 text-[10px] uppercase tracking-wider font-bold px-2.5 py-1 rounded-lg bg-slate-900/90 text-cyan-400 border border-slate-700 backdrop-blur-md">${p.brand}</span>
+          <span class="absolute top-3 right-3 w-7 h-7 rounded-full bg-slate-900/80 text-slate-300 flex items-center justify-center text-xs opacity-0 group-hover:opacity-100 transition backdrop-blur-md pointer-events-none"><i class="fa-solid fa-expand"></i></span>
+        </div>
+        <div class="p-5">
+          <h3 class="font-bold text-white text-base mb-3 leading-snug group-hover:text-cyan-300 transition">${p.name}</h3>
+          <div class="bg-slate-950/60 rounded-xl p-3 border border-slate-800/60 mb-2 space-y-1">${sp}</div>
+        </div>
+      </div>
+      <div class="p-5 pt-0 flex items-center justify-between">
+        <div><div class="text-xl font-black text-white">$${p.priceUSD}</div><div class="text-xs text-emerald-400 font-semibold">${bs} Bs</div></div>
+        <button onclick="addToCart('${p.id}')" class="bg-cyan-600 hover:bg-cyan-500 text-white px-3.5 py-2.5 rounded-xl transition shadow-lg flex items-center gap-1.5 font-bold text-xs"><i class="fa-solid fa-cart-plus"></i> Añadir</button>
+      </div>
+    </div>`;
+  }).join('');
+}
+
+function openImageModal(img,title){
+  document.getElementById("modalImage").src=img;
+  document.getElementById("modalTitle").innerText=title;
+  document.getElementById("imageModal").classList.remove("hidden");
+}
+function closeImageModal(){document.getElementById("imageModal").classList.add("hidden");}
+
+function addToCart(id){
+  const p=products.find(x=>x.id===id), e=cart.find(x=>x.id===id);
+  if(e)e.qty++;else cart.push({...p,qty:1});
+  updateCartDisplay();
+  if(document.getElementById("cartDrawer").classList.contains("hidden"))toggleCartDrawer();
+}
+function removeFromCart(id){cart=cart.filter(i=>i.id!==id);updateCartDisplay();}
+function changeQty(id,d){const i=cart.find(x=>x.id===id);if(i){i.qty+=d;if(i.qty<=0)removeFromCart(id);else updateCartDisplay();}}
+function clearCart(){cart=[];updateCartDisplay();}
+
+function updateCartDisplay(){
+  document.getElementById("cartBadge").innerText=cart.reduce((a,i)=>a+i.qty,0);
+  const el=document.getElementById("cartItems");
+  if(!cart.length){el.innerHTML=`<div class="text-center py-12 text-slate-500"><i class="fa-solid fa-cart-flatbed text-3xl mb-2"></i><p class="text-xs">Tu cotización está vacía</p></div>`;return;}
+  el.innerHTML=cart.map(item=>`
+    <div class="bg-slate-950 p-3 rounded-xl border border-slate-800 flex items-center gap-3">
+      <div class="w-14 h-14 rounded-lg bg-slate-800 flex items-center justify-center overflow-hidden shrink-0">
+        <img src="${item.image}" alt="${item.name}" class="w-full h-full object-cover">
+      </div>
+      <div class="flex-1 min-w-0">
+        <div class="text-xs font-bold text-white truncate">${item.name}</div>
+        <div class="text-[11px] text-cyan-400 font-semibold">$${item.priceUSD} × ${item.qty} = $${item.priceUSD*item.qty}</div>
+        <div class="text-[10px] text-emerald-400">${((item.priceUSD*item.qty)*tasaUSDT).toLocaleString('es-VE',{minimumFractionDigits:2})} Bs</div>
+      </div>
+      <div class="flex items-center space-x-1.5">
+        <div class="flex items-center bg-slate-900 border border-slate-800 rounded-lg">
+          <button onclick="changeQty('${item.id}',-1)" class="px-2 py-0.5 text-slate-400 hover:text-white">-</button>
+          <span class="text-xs font-bold text-white px-1">${item.qty}</span>
+          <button onclick="changeQty('${item.id}',1)" class="px-2 py-0.5 text-slate-400 hover:text-white">+</button>
+        </div>
+        <button onclick="removeFromCart('${item.id}')" class="text-slate-500 hover:text-red-400 p-1"><i class="fa-solid fa-trash text-xs"></i></button>
+      </div>
+    </div>`).join('');
+  const tu=cart.reduce((a,i)=>a+(i.priceUSD*i.qty),0);
+  document.getElementById("cartTotalUSD").innerText=`$${tu.toLocaleString('en-US',{minimumFractionDigits:2})}`;
+  document.getElementById("cartTotalBS").innerText=`${(tu*tasaUSDT).toLocaleString('es-VE',{minimumFractionDigits:2,maximumFractionDigits:2})} Bs`;
+}
+
+function toggleCartDrawer(){document.getElementById("cartDrawer").classList.toggle("hidden");}
+
+function sendToWhatsApp(){
+  if(!cart.length){alert("Agrega al menos un producto.");return;}
+  const tu=cart.reduce((a,i)=>a+(i.priceUSD*i.qty),0);
+  let msg=`🔥 *SOLICITUD DE COTIZACIÓN - TECHSTORE* 🔥\n\n📊 *Tasa:* ${tasaUSDT.toFixed(2)} Bs/USDT\n-----------------------------------\n`;
+  cart.forEach((item,i)=>{msg+=`${i+1}. *${item.name}*\n   └ Cant: ${item.qty}\n   └ Unit: $${item.priceUSD}\n   └ Sub: $${item.priceUSD*item.qty} (${((item.priceUSD*item.qty)*tasaUSDT).toLocaleString('es-VE',{minimumFractionDigits:2})} Bs)\n\n`;});
+  msg+=`-----------------------------------\n💰 *TOTAL:* $${tu.toFixed(2)}\n🇻🇪 *EN Bs:* ${(tu*tasaUSDT).toLocaleString('es-VE',{minimumFractionDigits:2,maximumFractionDigits:2})} Bs\n\n💳 Zelle · USDT · Pago Móvil / Transferencia Bs.`;
+  let ph=document.getElementById("phoneInput").value.trim().replace(/\+/g,'').replace(/\s/g,'')||"584264014765";
+  window.open(`https://wa.me/${ph}?text=${encodeURIComponent(msg)}`,'_blank');
+}
+</script>
 </body>
 </html>
